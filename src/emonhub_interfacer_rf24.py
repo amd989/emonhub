@@ -22,7 +22,7 @@ class EmonHubRF24Interfacer(EmonHubInterfacer):
         
         #RPi B
         # Setup for GPIO 15 CE and CE1 CSN with SPI Speed @ 8Mhz
-        self._radio = RF24(RPI_V2_GPIO_P1_15, BCM2835_SPI_CS0, BCM2835_SPI_SPEED_8MHZ)
+        self._radio = RF24(RPI_V2_GPIO_P1_22, BCM2835_SPI_CS0, BCM2835_SPI_SPEED_8MHZ)
         
         #RPi B+
         # Setup for GPIO 22 CE and CE0 CSN for RPi B+ with SPI Speed @ 8Mhz
@@ -35,13 +35,7 @@ class EmonHubRF24Interfacer(EmonHubInterfacer):
         port_nb (string): port number on which to open the socket
 
         """
-        pipes = [0xF0F0F0F0E1, 0xF0F0F0F0D2]
-        min_payload_size = 4
-        max_payload_size = 32
-        payload_size_increments_by = 1
-        next_payload_size = min_payload_size
-        inp_role = 'none'
-        send_payload = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ789012'
+        pipes = ['1Node', '2Node']
         millis = lambda: int(round(time.time() * 1000))        
                
         self._radio.begin()
